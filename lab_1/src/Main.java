@@ -1,3 +1,7 @@
+import creational.abstract_factory.FireLevelFactory;
+import creational.abstract_factory.GameArea;
+import creational.abstract_factory.IceLevelFactory;
+import creational.abstract_factory.LevelFactory;
 import creational.factory.Enemy;
 import creational.factory.EnemyFactory;
 import creational.factory_method.DesertWorld;
@@ -61,6 +65,20 @@ void main() {
     currentLevel.startJourney();
 
     System.out.println("---Factory method ends---");
+
+    System.out.println();
+
+    System.out.println("---Abstract factory starts---");
+
+    LevelFactory fireWorld = new FireLevelFactory();
+    GameArea zone1 = new GameArea(fireWorld);
+    zone1.play();
+
+    LevelFactory iceWorld = new IceLevelFactory();
+    GameArea zone2 = new GameArea(iceWorld);
+    zone2.play();
+
+    System.out.println("---Abstract factory ends---");
 
     System.out.println();
 }
