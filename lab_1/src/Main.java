@@ -2,6 +2,8 @@ import creational.abstract_factory.FireLevelFactory;
 import creational.abstract_factory.GameArea;
 import creational.abstract_factory.IceLevelFactory;
 import creational.abstract_factory.LevelFactory;
+import creational.builder.Level;
+import creational.builder.LevelBuilder;
 import creational.factory.Enemy;
 import creational.factory.EnemyFactory;
 import creational.factory_method.DesertWorld;
@@ -81,4 +83,23 @@ void main() {
     System.out.println("---Abstract factory ends---");
 
     System.out.println();
+
+    System.out.println("---Builder starts---");
+
+    Level tutorial = new LevelBuilder("Tutorial")
+            .withSize(50, 50)
+            .withEnemies(5)
+            .build();
+
+    Level bossArena = new LevelBuilder("Dragon's Lair")
+            .withSize(500, 500)
+            .withEnemies(50)
+            .withWeather("Thunderstorm")
+            .withBoss()
+            .build();
+
+    System.out.println(tutorial);
+    System.out.println(bossArena);
+
+    System.out.println("---Builder ends---");
 }
