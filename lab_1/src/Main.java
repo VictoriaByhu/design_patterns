@@ -11,6 +11,8 @@ import creational.factory_method.GameWorld;
 import creational.factory_method.WaterWorld;
 import creational.prototype.PineTree;
 import creational.singleton.OrderManagementService;
+import structural.proxy.ProxyVideoGameMap;
+import structural.proxy.VideoGameMap;
 
 void main() {
     System.out.println("---Singleton starts---");
@@ -102,4 +104,27 @@ void main() {
     System.out.println(bossArena);
 
     System.out.println("---Builder ends---");
+
+    System.out.println();
+
+    System.out.println("---Proxy starts---");
+
+    VideoGameMap map1 = new ProxyVideoGameMap("Dust_2.map");
+    VideoGameMap map2 = new ProxyVideoGameMap("Inferno.map");
+    VideoGameMap map3 = new ProxyVideoGameMap("Nuke.map");
+
+    System.out.println("--- Game is running, you are in the main menu ---");
+    System.out.println("Choose a map...");
+
+    System.out.println("\n[Event: Player clicked on Dust_2]");
+    map1.display();
+
+    System.out.println("\n[Event: Returning to Dust_2 after a break]");
+    map1.display();
+
+    System.out.println("\n--- Game over ---");
+
+    System.out.println("---Proxy ends---");
+
+    System.out.println();
 }
