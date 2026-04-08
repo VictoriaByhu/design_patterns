@@ -11,6 +11,10 @@ import creational.factory_method.GameWorld;
 import creational.factory_method.WaterWorld;
 import creational.prototype.PineTree;
 import creational.singleton.OrderManagementService;
+import structural.decorator.FireEnchantment;
+import structural.decorator.SharpnessEnchantment;
+import structural.decorator.Sword;
+import structural.decorator.Weapon;
 import structural.proxy.ProxyVideoGameMap;
 import structural.proxy.VideoGameMap;
 
@@ -125,6 +129,21 @@ void main() {
     System.out.println("\n--- Game over ---");
 
     System.out.println("---Proxy ends---");
+
+    System.out.println();
+
+    System.out.println("---Decorator starts---");
+
+    Weapon mySword = new Sword();
+    System.out.println(mySword.getDescription() + " | Damage: " + mySword.getDamage());
+
+    mySword = new FireEnchantment(mySword);
+    System.out.println(mySword.getDescription() + " | Damage: " + mySword.getDamage());
+
+    mySword = new SharpnessEnchantment(mySword);
+    System.out.println(mySword.getDescription() + " | Damage: " + mySword.getDamage());
+
+    System.out.println("---Decorator ends---");
 
     System.out.println();
 }
