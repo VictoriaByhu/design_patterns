@@ -11,6 +11,9 @@ import creational.factory_method.GameWorld;
 import creational.factory_method.WaterWorld;
 import creational.prototype.PineTree;
 import creational.singleton.OrderManagementService;
+import structural.adapter.ExternalSteamService;
+import structural.adapter.GameAchievements;
+import structural.adapter.SteamAdapter;
 import structural.decorator.FireEnchantment;
 import structural.decorator.SharpnessEnchantment;
 import structural.decorator.Sword;
@@ -144,6 +147,18 @@ void main() {
     System.out.println(mySword.getDescription() + " | Damage: " + mySword.getDamage());
 
     System.out.println("---Decorator ends---");
+
+    System.out.println();
+
+    System.out.println("---Adapter starts---");
+
+    ExternalSteamService steamApi = new ExternalSteamService();
+
+    GameAchievements achievements = new SteamAdapter(steamApi);
+
+    achievements.unlockAchievement("First Blood");
+
+    System.out.println("---Adapter ends---");
 
     System.out.println();
 }
