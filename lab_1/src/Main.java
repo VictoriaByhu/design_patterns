@@ -14,10 +14,18 @@ import creational.singleton.OrderManagementService;
 import structural.adapter.ExternalSteamService;
 import structural.adapter.GameAchievements;
 import structural.adapter.SteamAdapter;
+import structural.bridge.*;
+import structural.composite.GameUnit;
+import structural.composite.Soldier;
+import structural.composite.Squad;
 import structural.decorator.FireEnchantment;
 import structural.decorator.SharpnessEnchantment;
 import structural.decorator.Sword;
 import structural.decorator.Weapon;
+import structural.facade.GameLauncher;
+import structural.flyweight.Tree;
+import structural.flyweight.TreeFactory;
+import structural.flyweight.TreeType;
 import structural.proxy.ProxyVideoGameMap;
 import structural.proxy.VideoGameMap;
 
@@ -161,4 +169,70 @@ void main() {
     System.out.println("---Adapter ends---");
 
     System.out.println();
+
+    System.out.println("---Facade starts---");
+
+    GameLauncher launcher = new GameLauncher();
+    launcher.startLevel();
+
+    System.out.println("---Facade ends---");
+
+    System.out.println();
+
+    System.out.println("---Bridge starts---");
+
+    Device myTv = new TV();
+    Remote basicRemote = new Remote(myTv);
+    basicRemote.togglePower();
+
+    Device myRadio = new Radio();
+    AdvancedRemote smartRemote = new AdvancedRemote(myRadio);
+    smartRemote.togglePower();
+    smartRemote.mute();
+
+    System.out.println("---Bridge ends---");
+    System.out.println();
+
+    System.out.println("---Flyweight starts---");
+
+    int treesToPlant = 20;
+
+    System.out.println("Start planting " + treesToPlant + " trees...");
+
+    TreeType oakType = TreeFactory.getTreeType("Oak", "Dark Green", "HeavyOakTexture_V2.png");
+    TreeType pineType = TreeFactory.getTreeType("Pine", "Emerald", "PineNeedlesTexture.png");
+
+    for (int i = 0; i < treesToPlant / 2; i++) {
+        new Tree((int)(Math.random() * 1000), (int)(Math.random() * 1000), oakType).display();
+
+        new Tree((int)(Math.random() * 1000), (int)(Math.random() * 1000), pineType).display();
+    }
+
+    System.out.println("--- Planing completed! ---");
+
+    System.out.println("---Flyweight ends---");
+    System.out.println();
+
+    System.out.println("---Composite starts---");
+
+    GameUnit s1 = new Soldier("Wes");
+    GameUnit s2 = new Soldier("Daniel");
+    GameUnit s3 = new Soldier("Gabriel");
+
+    Squad squad1 = new Squad();
+    squad1.addUnit(s1);
+    squad1.addUnit(s2);
+
+    Squad army = new Squad();
+    army.addUnit(squad1);
+    army.addUnit(s3);
+
+    System.out.println("Order to one soldier:");
+    s1.move();
+
+    System.out.println("\nOrder to the entire army:");
+    army.move();
+
+    System.out.println("---Composite ends---");
+
 }
