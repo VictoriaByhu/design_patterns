@@ -8,6 +8,9 @@ import behavioral.command.InputHandler;
 import behavioral.command.MoveForwardCommand;
 import behavioral.iterator.ItemInventory;
 import behavioral.iterator.MyIterator;
+import behavioral.memento.GameSave;
+import behavioral.memento.MementoHero;
+import behavioral.memento.SaveManager;
 import behavioral.observer.Subscriber;
 import behavioral.observer.VideoFan;
 import behavioral.observer.YouTubeChannel;
@@ -387,6 +390,23 @@ void main() {
     techChannel.uploadVideo("How to learn Java overnight");
 
     System.out.println("---Observer ends---");
+
+    System.out.println();
+
+    System.out.println("---State starts---");
+
+    MementoHero hero2 = new MementoHero();
+    SaveManager saveManager = new SaveManager();
+
+    hero2.set("Level 1", 100);
+    saveManager.save(hero2.save());
+
+    hero2.set("Level 2", 10);
+
+    System.out.println("Loading...");
+    hero2.load(saveManager.undo());
+
+    System.out.println("---State ends---");
 
     System.out.println();
 
