@@ -2,10 +2,15 @@ import behavioral.command.Command;
 import behavioral.command.GameCharacter;
 import behavioral.command.InputHandler;
 import behavioral.command.MoveForwardCommand;
+import behavioral.iterator.ItemInventory;
+import behavioral.iterator.MyIterator;
 import behavioral.strategy.BowAttack;
 import behavioral.strategy.Hero;
 import behavioral.strategy.SpellAttack;
 import behavioral.strategy.SwordAttack;
+import behavioral.template_method.Beverage;
+import behavioral.template_method.Coffee;
+import behavioral.template_method.Tea;
 import creational.abstract_factory.FireLevelFactory;
 import creational.abstract_factory.GameArea;
 import creational.abstract_factory.IceLevelFactory;
@@ -277,4 +282,31 @@ void main() {
 
     System.out.println();
 
+    System.out.println("---Template method starts---");
+
+    Beverage tea = new Tea();
+    System.out.println("Making tea:");
+    tea.prepareRecipe();
+
+    System.out.println("\nMaking coffee:");
+    Beverage coffee = new Coffee();
+    coffee.prepareRecipe();
+
+    System.out.println("---Template method ends---");
+
+    System.out.println();
+
+    System.out.println("---Iterator starts---");
+
+    ItemInventory inventory = new ItemInventory();
+    MyIterator iterator = inventory.createIterator(); // Оновлена назва
+
+    while (iterator.hasNext()) {
+        String item = (String) iterator.next();
+        System.out.println("- " + item);
+    }
+
+    System.out.println("---Iterator ends---");
+
+    System.out.println();
 }
