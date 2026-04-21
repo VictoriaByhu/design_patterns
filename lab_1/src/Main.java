@@ -8,6 +8,11 @@ import behavioral.command.InputHandler;
 import behavioral.command.MoveForwardCommand;
 import behavioral.iterator.ItemInventory;
 import behavioral.iterator.MyIterator;
+import behavioral.observer.Subscriber;
+import behavioral.observer.VideoFan;
+import behavioral.observer.YouTubeChannel;
+import behavioral.state.InjuredState;
+import behavioral.state.PlayerContext;
 import behavioral.strategy.BowAttack;
 import behavioral.strategy.Hero;
 import behavioral.strategy.SpellAttack;
@@ -349,6 +354,39 @@ void main() {
     }
 
     System.out.println("---Visitor ends---");
+
+    System.out.println();
+
+    System.out.println("---State starts---");
+
+    PlayerContext new_player = new PlayerContext();
+
+    new_player.performAction();
+
+    new_player.setState(new InjuredState());
+    new_player.performAction();
+
+    System.out.println("---State ends---");
+
+    System.out.println();
+
+    System.out.println("---Observer starts---");
+
+    YouTubeChannel techChannel = new YouTubeChannel();
+
+    Subscriber user1 = new VideoFan("Max");
+    Subscriber user2 = new VideoFan("Alex");
+
+    techChannel.subscribe(user1);
+    techChannel.subscribe(user2);
+
+    techChannel.uploadVideo("iPhone 17 review");
+
+    techChannel.unsubscribe(user1);
+
+    techChannel.uploadVideo("How to learn Java overnight");
+
+    System.out.println("---Observer ends---");
 
     System.out.println();
 
