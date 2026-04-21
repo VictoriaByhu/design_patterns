@@ -1,3 +1,11 @@
+import behavioral.command.Command;
+import behavioral.command.GameCharacter;
+import behavioral.command.InputHandler;
+import behavioral.command.MoveForwardCommand;
+import behavioral.strategy.BowAttack;
+import behavioral.strategy.Hero;
+import behavioral.strategy.SpellAttack;
+import behavioral.strategy.SwordAttack;
 import creational.abstract_factory.FireLevelFactory;
 import creational.abstract_factory.GameArea;
 import creational.abstract_factory.IceLevelFactory;
@@ -234,5 +242,39 @@ void main() {
     army.move();
 
     System.out.println("---Composite ends---");
+
+    System.out.println();
+
+    System.out.println("---Strategy stats---");
+
+    Hero hero = new Hero();
+
+    hero.setStrategy(new SwordAttack());
+    hero.executeAttack();
+
+    hero.setStrategy(new BowAttack());
+    hero.executeAttack();
+
+    hero.setStrategy(new SpellAttack());
+    hero.executeAttack();
+
+    System.out.println("---Strategy ends---");
+
+    System.out.println();
+
+    System.out.println("---Command starts---");
+
+    GameCharacter player = new GameCharacter();
+    InputHandler controller = new InputHandler();
+
+
+    Command walk = new MoveForwardCommand(player);
+    controller.setCommand(walk);
+
+    controller.pressButton();
+
+    System.out.println("---Command ends---");
+
+    System.out.println();
 
 }
