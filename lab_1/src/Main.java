@@ -1,3 +1,7 @@
+import behavioral.chain_of_responsibility.BotHandler;
+import behavioral.chain_of_responsibility.EngineerHandler;
+import behavioral.chain_of_responsibility.OperatorHandler;
+import behavioral.chain_of_responsibility.SupportHandler;
 import behavioral.command.Command;
 import behavioral.command.GameCharacter;
 import behavioral.command.InputHandler;
@@ -309,4 +313,29 @@ void main() {
     System.out.println("---Iterator ends---");
 
     System.out.println();
+
+    System.out.println("---Chain Of Responsibility starts---");
+
+    SupportHandler bot = new BotHandler();
+    SupportHandler operator = new OperatorHandler();
+    SupportHandler engineer = new EngineerHandler();
+
+
+    bot.setNext(operator);
+    operator.setNext(engineer);
+
+
+    System.out.println("Request 1:");
+    bot.handleRequest("Forgot password", 1);
+
+    System.out.println("\nRequest 2:");
+    bot.handleRequest("The internet is not working.", 2);
+
+    System.out.println("\nRequest 3:");
+    bot.handleRequest("The server exploded", 3);
+
+    System.out.println("---Chain Of Responsibility ends---");
+
+    System.out.println();
+
 }
