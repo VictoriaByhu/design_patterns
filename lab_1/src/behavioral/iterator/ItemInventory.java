@@ -8,7 +8,7 @@ public class ItemInventory implements Inventory {
         return new ItemIterator();
     }
 
-    private class ItemIterator implements MyIterator { // І тут
+    private class ItemIterator implements MyIterator {
         private int position = 0;
 
         @Override

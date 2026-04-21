@@ -15,6 +15,7 @@ import behavioral.strategy.SwordAttack;
 import behavioral.template_method.Beverage;
 import behavioral.template_method.Coffee;
 import behavioral.template_method.Tea;
+import behavioral.visitor.*;
 import creational.abstract_factory.FireLevelFactory;
 import creational.abstract_factory.GameArea;
 import creational.abstract_factory.IceLevelFactory;
@@ -335,6 +336,19 @@ void main() {
     bot.handleRequest("The server exploded", 3);
 
     System.out.println("---Chain Of Responsibility ends---");
+
+    System.out.println();
+
+    System.out.println("---Visitor starts---");
+
+    Ship[] fleet = {new Warship(), new CivilianShip()};
+    Visitor inspector = new Inspector();
+
+    for (Ship ship : fleet) {
+        ship.accept(inspector);
+    }
+
+    System.out.println("---Visitor ends---");
 
     System.out.println();
 
