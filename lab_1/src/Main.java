@@ -8,6 +8,10 @@ import behavioral.command.InputHandler;
 import behavioral.command.MoveForwardCommand;
 import behavioral.iterator.ItemInventory;
 import behavioral.iterator.MyIterator;
+import behavioral.mediator.ChatMediator;
+import behavioral.mediator.ChatRoom;
+import behavioral.mediator.ChatUser;
+import behavioral.mediator.User;
 import behavioral.memento.GameSave;
 import behavioral.memento.MementoHero;
 import behavioral.memento.SaveManager;
@@ -409,5 +413,17 @@ void main() {
     System.out.println("---State ends---");
 
     System.out.println();
+
+    ChatMediator chat = new ChatRoom();
+
+    User user_1 = new ChatUser(chat, "Alex");
+    User user_2 = new ChatUser(chat, "Mary");
+    User user_3 = new ChatUser(chat, "Adrew");
+
+    chat.addUser(user_1);
+    chat.addUser(user_2);
+    chat.addUser(user_3);
+
+    user_1.send("Hi there!");
 
 }
